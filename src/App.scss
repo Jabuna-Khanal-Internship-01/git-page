@@ -117,3 +117,18 @@ img{
    margin:0px 30px;
  }
 }
+
+.repository{
+  border:1px solid purple;
+
+  &__repo{
+    margin: 10px;
+    border: 1px solid red;
+
+    li{
+      font-size:10px;
+      margin:10px;
+    }
+  }
+
+}
