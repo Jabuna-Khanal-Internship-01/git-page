@@ -18,7 +18,6 @@
 
 
 .Container{
-  height:500px;
   margin-top: 20px;
   width:1314px;
 
@@ -39,7 +38,6 @@
 }
 
 .content{
-  height: 250px;
 
 &__image{
   margin:0px 20px;
@@ -48,13 +46,26 @@ img{
   height:90px;
   margin-left: 100px;
 }
+
 }
+
+p{
+  margin-left: 120px;
+
+}
+&__edit-btn{
+  margin-top: 15px;
+  margin-left:120px;
+  margin-bottom: 20px;
+}
+
 
 &__userDetail{
   margin-top: 10px; 
 
   p{
-    margin-left: 40px;
+    margin-left: 100px;
+
   }
   textarea{
     margin-left: 40px;
@@ -72,6 +83,7 @@ img{
  }  
   &__button{
   margin-top: 20px;
+  margin-bottom: 20px;
 
 
 

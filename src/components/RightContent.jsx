@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 
+
 const tabs = {
   overView: 'Overview',
   repo: 'Repositories',
@@ -15,12 +16,13 @@ export default class RightContent extends Component {
       repos: [],
       status: [],
       activeTab: '',
+      search: '',
     };
     this.tabArray = [
       {
         name: tabs.overView,
         onClick: () => {
-          console.log('Overview is clicked')
+          console.log('Overview')
         }
       },
       {
@@ -51,8 +53,11 @@ export default class RightContent extends Component {
     });
   };
 
+
+
   getRepoView = () => {
     return (
+
       this.state.repos.map((repo) => (
         <>
           <div className="repository__repo">{repo.name}
@@ -90,6 +95,10 @@ export default class RightContent extends Component {
   }
 
 
+  search(key) {
+    console.warn(key)
+  }
+
 
   render() {
 
@@ -102,8 +111,8 @@ export default class RightContent extends Component {
           })}
         </div>
 
-        <div className="searchBar">
-          <input type="text" value="Find a repo" />
+        <div className="searchBar" >
+          <input type="text" placeholder="Find a repo" onChange={(e) => this.search(e.target.value)} />
           <select className="list">
             <option value="About">All</option>
             <option value="About">Public</option>
@@ -116,6 +125,7 @@ export default class RightContent extends Component {
             <option value="Completed">Javascript</option>
           </select>
         </div>
+
         <div className="repository">
           {this.getContentView()}
         </div>
