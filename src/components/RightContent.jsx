@@ -9,6 +9,7 @@ const tabs = {
 }
 
 
+
 export default class RightContent extends Component {
   constructor() {
     super();
@@ -16,8 +17,11 @@ export default class RightContent extends Component {
       repos: [],
       status: [],
       activeTab: '',
-      search: '',
+      searchText: '',
+      filteredRepos: [],
+      selectedVisibility:'',
     };
+
     this.tabArray = [
       {
         name: tabs.overView,
@@ -56,16 +60,18 @@ export default class RightContent extends Component {
 
 
   getRepoView = () => {
+    const result = (this.state.searchText==='')? this.state.repos: this.state.filteredRepos
     return (
 
-      this.state.repos.map((repo) => (
-        <>
-          <div className="repository__repo">{repo.name}
-            <li>{repo.language}</li></div>
-        </>
-      ))
+      result.map((repo) => (
+        <div className="repository__repo">{repo.name}
+          <li>{repo.language}</li></div>
+      )
+      )
     )
   }
+
+
 
 
   getContentView = () => {
@@ -96,12 +102,31 @@ export default class RightContent extends Component {
 
 
   search(key) {
-    console.warn(key)
+    console.log(key);
+    const filteredResult = this.state.repos.filter((repo) => {
+      let visibility =true;
+      if(this.state.selectedVisibility === 'Public'){
+       visibility =!repo.private
+      } else if(this.state.selectedVisibility ==='Private'){
+        visibility = repo.private
+      }else{}
+  
+      return repo.name.includes(key) && visibility;
+
+    });
+    console.log(filteredResult,'---------------')
+    this.setState({ filteredRepos: filteredResult, searchText:key })
+
   }
 
+  handleVisibilitySelect =(event) =>{
+    
+    console.log()
+    this.setState({selectedVisibility:event.target.value})
+  }
 
   render() {
-
+    console.log(this.state.repos,'=====')
     return (
       <>
         <div className="content-right">
@@ -113,10 +138,10 @@ export default class RightContent extends Component {
 
         <div className="searchBar" >
           <input type="text" placeholder="Find a repo" onChange={(e) => this.search(e.target.value)} />
-          <select className="list">
-            <option value="About">All</option>
-            <option value="About">Public</option>
-            <option value="Completed">Private</option>
+          <select className="list" onChange ={this.handleVisibilitySelect}>
+            <option value="All">All</option>
+            <option value="Public">Public</option>
+            <option value="Private">Private</option>
           </select>
           <select className="list">
             <option value="About">All</option>
