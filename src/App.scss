@@ -31,7 +31,7 @@
   &__right-wrapper{
     margin-left: 10px;
     width:100%;
-    border:1px solid blue;
+    border:1px solid black;
   }
 
 
@@ -106,7 +106,7 @@ p{
 .content-right{
   height:20px;
   padding:10px;
-  border: 1px solid red;
+
 
   a{
   padding:25px;
@@ -116,7 +116,6 @@ p{
 
 .searchBar{
   height:40px;
-  border:1px solid red;
 
  input{
   margin-left:30px;
@@ -131,11 +130,12 @@ p{
 }
 
 .repository{
-  border:1px solid purple;
+  margin:10px 60px 0px 8px;
+  padding:10px;
 
   &__repo{
     margin: 10px;
-    border: 1px solid red;
+    border: 1px solid black;
 
     li{
       font-size:10px;
