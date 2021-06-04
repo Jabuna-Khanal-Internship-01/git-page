@@ -11,7 +11,7 @@ export default class LeftContent extends Component {
             bio: '',
             company: '',
             location: '',
-            name: '',
+            email: '',
             twitterUserName: '',
             isInEditMode: false
         }
@@ -24,18 +24,15 @@ export default class LeftContent extends Component {
     fetchUser = async () => {
         const response = await fetch(' https://api.github.com/users/jabuna07')
         const data = await response.json()
-        console.log(data.twitter_username,'----')
+
         this.setState({
             user: data,
             bio: data.bio,
             company: data.company,
             location: data.location,
-            name: data.name,
+            email: data.email,
             twitterUserName: data.twitter_username,
-
-
         });
-
     };
 
     updateUserDetail = async () => {
@@ -50,7 +47,7 @@ export default class LeftContent extends Component {
                 bio: this.state.bio,
                 company: this.state.company,
                 location: this.state.location,
-                name: this.state.name,
+                email: this.state.email,
                 twitter_username: this.state.twitterUserName,
             })
         });
@@ -61,15 +58,12 @@ export default class LeftContent extends Component {
             bio: data.bio,
             company: data.company,
             location: data.location,
-            name: data.name,
+            email: data.email,
             twitterUserName: data.twitter_username,
 
         })
 
     };
-
-
-
 
     getUserLogin = () => {
         console.warn('---')
@@ -84,8 +78,6 @@ export default class LeftContent extends Component {
             </>
         )
     }
-
-
 
     editMode = () => {
         this.setState({
@@ -125,7 +117,7 @@ export default class LeftContent extends Component {
 
     handleemailChange = (event) => {
         this.setState({
-            name: event.target.value
+            email: event.target.value
         })
     }
 
@@ -136,25 +128,19 @@ export default class LeftContent extends Component {
     }
 
     renderEditView = () => {
-
-        console.log(this.state.user.bio, this.state.location, '------')
         return <> <div className="content">
             <div className="content__image">
                 <img src="avatar.png" alt="image" />
             </div>
-            <p>
-                {this.getUserLogin()}
-            </p>
-
+            <p> {this.getUserLogin()}</p>
         </div>
 
             <div className="content__userDetail">
-
                 <textarea className="Bio" cols="35" rows="6" placeholder="Add a Bio" onChange={this.handleChange} value={this.state.bio}></textarea>
                 <form action="detail">
                     <input type="text" placeholder="company" onChange={this.handleCompanyChange} value={this.state.company} />
                     <input type="text" placeholder="location" onChange={this.handleLocationChange} value={this.state.location} />
-                    <input type="text" placeholder="name" onChange={this.handleemailChange} value={this.state.name} />
+                    <input type="text" placeholder="email" onChange={this.handleemailChange} value={this.state.email} />
                     <input type="text" placeholder="twitter username" onChange={this.handleTwitterNameChange} value={this.state.twitterUserName} />
                 </form>
             </div>
@@ -177,12 +163,9 @@ export default class LeftContent extends Component {
                 <input type="button" value="Edit profile" onClick={this.editMode} />
             </div>
         </div>
-
     }
 
-
     render() {
-
         return (
             this.state.isInEditMode ? this.renderEditView() : this.renderDefaultView()
         )

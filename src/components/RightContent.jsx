@@ -1,14 +1,11 @@
 import React, { Component } from 'react'
 
-
 const tabs = {
   overView: 'Overview',
   repo: 'Repositories',
   project: 'Projects',
   package: 'Packages',
 }
-
-
 
 export default class RightContent extends Component {
   constructor() {
@@ -19,7 +16,8 @@ export default class RightContent extends Component {
       activeTab: '',
       searchText: '',
       filteredRepos: [],
-      selectedVisibility:'',
+      selectedVisibility: '',
+      selectedLanguage: '',
     };
 
     this.tabArray = [
@@ -44,7 +42,6 @@ export default class RightContent extends Component {
     ]
   }
 
-
   componentDidMount() {
     this.fetchRepo();
   }
@@ -57,10 +54,8 @@ export default class RightContent extends Component {
     });
   };
 
-
-
   getRepoView = () => {
-    const result = (this.state.searchText==='')? this.state.repos: this.state.filteredRepos
+    const result = (this.state.searchText === '') ? this.state.repos : this.state.filteredRepos
     return (
 
       result.map((repo) => (
@@ -70,9 +65,6 @@ export default class RightContent extends Component {
       )
     )
   }
-
-
-
 
   getContentView = () => {
     console.log(this.state.activeTab)
@@ -88,7 +80,6 @@ export default class RightContent extends Component {
 
   handleRepoClick = () => {
     this.setState({ activeTab: tabs.repo })
-
   }
 
   handleProjectClick = () => {
@@ -100,33 +91,35 @@ export default class RightContent extends Component {
     this.setState({ activeTab: tabs.package })
   }
 
-
   search(key) {
     console.log(key);
-    const filteredResult = this.state.repos.filter((repo) => {
-      let visibility =true;
-      if(this.state.selectedVisibility === 'Public'){
-       visibility =!repo.private
-      } else if(this.state.selectedVisibility ==='Private'){
+    console.log(this.state.selectedLanguage)
+    const { repos, selectedVisibility } = this.state
+    const filteredResult = repos.filter((repo) => {
+      let visibility = true;
+      if (selectedVisibility === 'Public') {
+        visibility = !repo.private
+
+      } else if (selectedVisibility === 'Private') {
         visibility = repo.private
-      }else{}
-  
-      return repo.name.includes(key) && visibility;
+      } else { }
+
+      return (repo.name.includes(key) && visibility);
 
     });
-    console.log(filteredResult,'---------------')
-    this.setState({ filteredRepos: filteredResult, searchText:key })
-
+    this.setState({ filteredRepos: filteredResult, searchText: key })
   }
 
-  handleVisibilitySelect =(event) =>{
-    
-    console.log()
-    this.setState({selectedVisibility:event.target.value})
+  handleVisibilitySelect = (event) => {
+    this.setState({ selectedVisibility: event.target.value })
+  }
+
+  handleLanguageSelect = (event) => {
+    this.setState({ selectedLanguage: event.target.value })
   }
 
   render() {
-    console.log(this.state.repos,'=====')
+    console.log(this.state.repos, '=====')
     return (
       <>
         <div className="content-right">
@@ -138,27 +131,27 @@ export default class RightContent extends Component {
 
         <div className="searchBar" >
           <input type="text" placeholder="Find a repo" onChange={(e) => this.search(e.target.value)} />
-          <select className="list" onChange ={this.handleVisibilitySelect}>
+          <select className="list" onChange={this.handleVisibilitySelect}>
             <option value="All">All</option>
             <option value="Public">Public</option>
             <option value="Private">Private</option>
           </select>
-          <select className="list">
-            <option value="About">All</option>
-            <option value="Completed">Html</option>
-            <option value="Completed">Scss</option>
-            <option value="Completed">Javascript</option>
+          <select className="list" onChange={this.handleLanguageSelect}>
+            <option value="All">All</option>
+            <option value="HTML">HTML</option>
+            <option value="SCSS">SCSS</option>
+            <option value="JavaScript">Javascript</option>
           </select>
         </div>
 
         <div className="repository">
           {this.getContentView()}
         </div>
-
       </>
     )
   }
 }
+
 
 
 
