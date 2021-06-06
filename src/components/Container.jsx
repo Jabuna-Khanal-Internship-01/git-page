@@ -1,6 +1,7 @@
 import React from 'react'
 import LeftContent from './LeftContent';
 import RightContent from './RightContent';
+
 export default function Container() {
     return (
         <div className="Container">
@@ -13,3 +14,4 @@ export default function Container() {
         </div>
     )
 }
+

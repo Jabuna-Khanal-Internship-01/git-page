@@ -1,15 +1,11 @@
 import './App.scss';
-import NavBar from './components/NavBar';
-import Container from './components/Container';
+import GitPage from './components/GitPage';
 
 function App() {
   return (
     <>
-        <NavBar />
-        <Container />
-        
+      <GitPage />
     </>
   );
 }
-
 export default App;

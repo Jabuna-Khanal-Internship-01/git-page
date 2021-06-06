@@ -18,52 +18,44 @@
 .Container{
   margin-top: 20px;
   width:1314px;
-
   display: flex;
-
   &__left-wrapper{
     width:40%;
     border:1px solid black;
   }
-
   &__right-wrapper{
     margin-left: 10px;
     width:100%;
     border:1px solid black;
   }
-
-
 }
 
 .content{
-
 &__image{
   margin:0px 20px;
-
 img{
   height:90px;
   margin-left: 100px;
-}
-
+  }
 }
 
 p{
   margin-left: 120px;
-
 }
 &__edit-btn{
   margin-top: 15px;
   margin-left:120px;
   margin-bottom: 20px;
 }
-
-
+&__userData{
+  p{
+    font-size: 15px;
+  }
+}
 &__userDetail{
   margin-top: 10px; 
-
   p{
     margin-left: 100px;
-
   }
   textarea{
     margin-left: 40px;
@@ -71,7 +63,6 @@ p{
   form{
     margin-top:30px;
     margin-left: 40px;
-
   input{
     margin:5px;
     width:280px;
@@ -82,9 +73,6 @@ p{
   &__button{
   margin-top: 20px;
   margin-bottom: 20px;
-
-
-
   &--save{
     background-color: rgb(18, 161, 18);
     padding:5px;
@@ -92,7 +80,6 @@ p{
     margin-left: 45px;
     border-radius: 5px;
   }
-
   &--cancel{
     margin-left: 5px;
     padding:5px;
@@ -104,19 +91,18 @@ p{
 .content-right{
   height:20px;
   padding:10px;
-
-
+  margin:15px 10px 0px 10px;
+  border: 1px solid black;
   a{
   padding:25px;
-  
   }
 }
 
 .searchBar{
   height:40px;
+  margin-top: 20px;
 
  input{
-  margin-left:30px;
   height:20px;
   padding: 5px;
   width:400px;
@@ -128,17 +114,19 @@ p{
 }
 
 .repository{
-  margin:10px 60px 0px 8px;
-  padding:10px;
-
+ margin-top: 5px;
   &__repo{
-    margin: 10px;
+    margin-bottom: 10px;
     border: 1px solid black;
-
     li{
       font-size:10px;
       margin:10px;
     }
   }
-
 }
+
+.project-view{
+  margin-top:20px;
+}
+
+
